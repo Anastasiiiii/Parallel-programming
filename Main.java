@@ -49,7 +49,7 @@ class MyThread extends Thread {
         int[][] matrixTemporaryResult2 = addMatrices(matrixTemporaryResult, matrixMD);
         OptionalInt min = Arrays.stream(C).min();
         int[] vectorTemporaryResult3 = multiplyVectorOnScalar(B, min);
-        int[] resultMatrix = multiplyMatricsOnVector(vectorTemporaryResult3, matrixTemporaryResult2);
+        int[] resultMatrix = multiplyMetricsOnVector(vectorTemporaryResult3, matrixTemporaryResult2);
 
 
         System.out.println("Resultant Vector:");
@@ -106,20 +106,20 @@ class MyThread extends Thread {
         return result;
     }
 
-    public static int[] multiplyMatricsOnVector(int[] vector, int[][] matrix) {
+    public static int[] multiplyMetricsOnVector(int[] vector, int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
-        int[] finalresult = new int[rows];
+        int[] result = new int[rows];
 
         for (int j = 0; j < rows; j++) {
             int sum = 0;
             for (int i = 0; i < cols; i++) {
                 sum += vector[i] * matrix[i][j];
             }
-            finalresult[j] = sum;
+            result[j] = sum;
         }
-        return finalresult;
+        return result;
     }
 
 }
@@ -227,7 +227,7 @@ class MyThread3 extends Thread {
         }
         int[] vectorTemporaryResult = addVectors(O, P);
         Arrays.sort(vectorTemporaryResult);
-        int[] vectorT = multiplyMatricsOnVector(vectorTemporaryResult, matrixTemporaryResult);
+        int[] vectorT = multiplyMetricsOnVector(vectorTemporaryResult, matrixTemporaryResult);
 
         System.out.println("Resultant Vector:");
         for (int value : vectorT) {
@@ -268,20 +268,20 @@ class MyThread3 extends Thread {
         return result;
     }
 
-    public static int[] multiplyMatricsOnVector(int[] vector, int[][] matrix) {
+    public static int[] multiplyMetricsOnVector(int[] vector, int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
-        int[] finalresult = new int[rows];
+        int[] result = new int[rows];
 
         for (int j = 0; j < rows; j++) {
             int sum = 0;
             for (int i = 0; i < cols; i++) {
                 sum += vector[i] * matrix[i][j];
             }
-            finalresult[j] = sum;
+            result[j] = sum;
         }
-        return finalresult;
+        return result;
     }
 
 }
