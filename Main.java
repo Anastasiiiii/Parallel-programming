@@ -1,6 +1,8 @@
 import java.util.Arrays;
 import java.util.OptionalInt;
 
+//мій варіант: 1.10, 2.21, 3.11
+
 public class Main {
     public static void main(String[] args) {
         MyThread myThread = new MyThread();
@@ -24,13 +26,13 @@ public class Main {
         myThread3.start();
     }
 }
+//The first Function
+class MyThread extends Thread {
 
-class MyThread extends Thread  {
+    static int[] B = new int[]{4, 7, 1};
+    static int[] C = new int[]{2, 6, 3};
 
-    static int[] B = new int [] {4, 7, 1};
-    static int[] C = new int [] {2, 6, 3};
-
-    static int[][] matrixMA = new int[][] {
+    static int[][] matrixMA = new int[][]{
             {1, 3, 6},
             {4, 2, 8},
             {5, 7, 2}
@@ -41,6 +43,7 @@ class MyThread extends Thread  {
             {3, 4, 6},
             {1, 5, 9}
     };
+
     public void run() {
         int[][] matrixTemporaryResult = multiplyMatrices(matrixMA, matrixMD);
         int[][] matrixTemporaryResult2 = addMatrices(matrixTemporaryResult, matrixMD);
@@ -55,6 +58,7 @@ class MyThread extends Thread  {
         }
 
     }
+
     public static int[][] addMatrices(int[][] matrix1, int[][] matrix2) {
         int rows = matrix1.length;
         int cols = matrix1[0].length;
@@ -69,6 +73,7 @@ class MyThread extends Thread  {
 
         return result;
     }
+
     public static int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2) {
         int rows1 = matrix1.length;
         int cols1 = matrix1[0].length;
@@ -87,6 +92,7 @@ class MyThread extends Thread  {
         }
         return result;
     }
+
     public static int[] multiplyVectorOnScalar(int[] vector, OptionalInt p) {
 
         int[] result = new int[vector.length];
@@ -100,7 +106,7 @@ class MyThread extends Thread  {
         return result;
     }
 
-    public static int[] multiplyMatricsOnVector( int[] vector, int[][] matrix) {
+    public static int[] multiplyMatricsOnVector(int[] vector, int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -118,9 +124,10 @@ class MyThread extends Thread  {
 
 }
 
+//The second function
 class MyThread2 extends Thread {
 
-    static int[][] matrixMG = new int[][] {
+    static int[][] matrixMG = new int[][]{
             {3, 5, 9},
             {4, 1, 6},
             {2, 3, 8}
@@ -131,7 +138,7 @@ class MyThread2 extends Thread {
             {2, 9, 8},
             {4, 4, 1}
     };
-    static int[][] matrixMK = new int[][] {
+    static int[][] matrixMK = new int[][]{
             {9, 3, 2},
             {2, 6, 2},
             {1, 7, 3}
@@ -142,6 +149,7 @@ class MyThread2 extends Thread {
             {9, 5, 3},
             {8, 2, 1}
     };
+
     public void run() {
         int[][] matrixTemporaryResult = multiplyMatrices(matrixMH, matrixMK);
         int[][] matrixTemporaryResult2 = addMatrices(matrixMG, matrixTemporaryResult);
@@ -155,6 +163,7 @@ class MyThread2 extends Thread {
             System.out.println();
         }
     }
+
     public static int[][] addMatrices(int[][] matrix1, int[][] matrix2) {
         int rows = matrix1.length;
         int cols = matrix1[0].length;
@@ -169,6 +178,7 @@ class MyThread2 extends Thread {
 
         return result;
     }
+
     public static int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2) {
         int rows1 = matrix1.length;
         int cols1 = matrix1[0].length;
@@ -189,11 +199,12 @@ class MyThread2 extends Thread {
     }
 }
 
+//The third Function
 class MyThread3 extends Thread {
 
-    static int[] O = new int [] {3, 1, 5};
-    static int[] P = new int [] {4, 2, 1};
-    static int[][] matrixMR = new int[][] {
+    static int[] O = new int[]{3, 1, 5};
+    static int[] P = new int[]{4, 2, 1};
+    static int[][] matrixMR = new int[][]{
             {1, 2, 3},
             {4, 5, 6},
             {7, 8, 9}
@@ -204,10 +215,11 @@ class MyThread3 extends Thread {
             {3, 6, 5},
             {8, 7, 1}
     };
+
     public void run() {
         int[][] matrixTemporaryResult = multiplyMatrices(matrixMR, matrixMS);
         for (int i = 0; i < matrixTemporaryResult.length; i++) {
-            for (int j = i+1; j < matrixTemporaryResult.length; j++) {
+            for (int j = i + 1; j < matrixTemporaryResult.length; j++) {
                 float temp = matrixTemporaryResult[i][j];
                 matrixTemporaryResult[i][j] = matrixTemporaryResult[j][i];
                 matrixTemporaryResult[j][i] = (int) temp;
@@ -222,6 +234,7 @@ class MyThread3 extends Thread {
             System.out.println(value);
         }
     }
+
     public static int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2) {
         int rows1 = matrix1.length;
         int cols1 = matrix1[0].length;
@@ -255,7 +268,7 @@ class MyThread3 extends Thread {
         return result;
     }
 
-    public static int[] multiplyMatricsOnVector( int[] vector, int[][] matrix) {
+    public static int[] multiplyMatricsOnVector(int[] vector, int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
