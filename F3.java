@@ -17,14 +17,6 @@ public class F3 {
 
     public static void main(String[] args) {
         int[][] matrixTemporaryResult = multiplyMatrices(matrixMR, matrixMS);
-        System.out.println("Resultant Matrix:");
-        for (int[] row : matrixTemporaryResult) {
-            for (int value : row) {
-                System.out.print(value + " ");
-            }
-            System.out.println();
-        }
-
         for (int i = 0; i < matrixTemporaryResult.length; i++) {
             for (int j = i+1; j < matrixTemporaryResult.length; j++) {
                 float temp = matrixTemporaryResult[i][j];
@@ -32,30 +24,11 @@ public class F3 {
                 matrixTemporaryResult[j][i] = (int) temp;
             }
         }
-
-        System.out.println("Transposed Matrix:");
-        for (int[] row : matrixTemporaryResult) {
-            for (int value : row) {
-                System.out.print(value + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-
         int[] vectorTemporaryResult = addVectors(O, P);
-
-        for (int value : vectorTemporaryResult) {
-            System.out.println(value);
-        }
-        System.out.println();
         Arrays.sort(vectorTemporaryResult);
-        for (int value : vectorTemporaryResult) {
-            System.out.println(value);
-        }
+        int[] vectorT = multiplyMatricsOnVector(vectorTemporaryResult, matrixTemporaryResult);
 
-        System.out.println();
-
-        int[] vectorT = multiplyMatricsOnVector(matrixTemporaryResult, vectorTemporaryResult);
+        System.out.println("Resultant Vector:");
         for (int value : vectorT) {
             System.out.println(value);
         }
@@ -94,18 +67,18 @@ public class F3 {
         return result;
     }
 
-    public static int[] multiplyMatricsOnVector(int[][] matrix, int[] vector) {
+    public static int[] multiplyMatricsOnVector( int[] vector, int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
         int[] finalresult = new int[rows];
 
-        for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rows; j++) {
             int sum = 0;
-            for (int j = 0; j < cols; j++) {
-                sum += matrix[i][j] * vector[j];
-            }
-            finalresult[i] = sum;
+            for (int i = 0; i < cols; i++) {
+                sum += vector[i] * matrix[i][j];
+           }
+            finalresult[j] = sum;
         }
         return finalresult;
     }

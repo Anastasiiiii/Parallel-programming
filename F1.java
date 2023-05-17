@@ -22,10 +22,11 @@ public class F1 {
         int[][] matrixTemporaryResult = multiplyMatrices(matrixMA, matrixMD);
         int[][] matrixTemporaryResult2 = addMatrices(matrixTemporaryResult, matrixMD);
         OptionalInt min = Arrays.stream(C).min();
-        int[][] matrixTemporaryResult3 = multiplyMatricsOnScalar(matrixTemporaryResult2, min);
-        int[] resultMatrix = multiplyMatricsOnVector(matrixTemporaryResult3, B);
+        int[] vectorTemporaryResult3 = multiplyVectorOnScalar(B, min);
+        int[] resultMatrix = multiplyMatricsOnVector(vectorTemporaryResult3, matrixTemporaryResult2);
 
-        System.out.println("Resultant Matrix:");
+
+        System.out.println("Resultant Vector:");
         for (int value : resultMatrix) {
             System.out.println(value);
         }
@@ -63,36 +64,31 @@ public class F1 {
         }
         return result;
     }
-    public static int[][] multiplyMatricsOnScalar(int[][] matrix, OptionalInt p) {
-        int rows = matrix.length;
-        int cols = matrix[0].length;
+    public static int[] multiplyVectorOnScalar(int[] vector, OptionalInt p) {
 
-        int[][] result = new int[rows][cols];
+        int[] result = new int[vector.length];
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < vector.length; i++) {
                 int sum;
-                {
-                    sum = matrix[i][j] * p.getAsInt();
-                }
-                result[i][j] = sum;
+                    sum = vector[i] * p.getAsInt();
+
+                result[i] = sum;
             }
+        return result;
         }
 
-        return result;
-    }
-    public static int[] multiplyMatricsOnVector(int[][] matrix, int[] vector) {
+    public static int[] multiplyMatricsOnVector( int[] vector, int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
         int[] finalresult = new int[rows];
 
-        for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rows; j++) {
             int sum = 0;
-            for (int j = 0; j < cols; j++) {
-                sum += matrix[i][j] * vector[j];
+            for (int i = 0; i < cols; i++) {
+                sum += vector[i] * matrix[i][j];
             }
-            finalresult[i] = sum;
+            finalresult[j] = sum;
         }
         return finalresult;
     }
