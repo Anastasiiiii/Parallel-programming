@@ -1,6 +1,8 @@
+import java.util.Arrays;
+
 public class F3 {
     static int[] O = new int [] {3, 1, 5};
-    static int[] P = new int [] {4, 6, 1};
+    static int[] P = new int [] {4, 2, 1};
     static int[][] matrixMR = new int[][] {
             {1, 2, 3},
             {4, 5, 6},
@@ -38,6 +40,26 @@ public class F3 {
             }
             System.out.println();
         }
+        System.out.println();
+
+        int[] vectorTemporaryResult = addVectors(O, P);
+
+        for (int value : vectorTemporaryResult) {
+            System.out.println(value);
+        }
+        System.out.println();
+        Arrays.sort(vectorTemporaryResult);
+        for (int value : vectorTemporaryResult) {
+            System.out.println(value);
+        }
+
+        System.out.println();
+
+        int[] vectorT = multiplyMatricsOnVector(matrixTemporaryResult, vectorTemporaryResult);
+        for (int value : vectorT) {
+            System.out.println(value);
+        }
+
     }
     public static int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2) {
         int rows1 = matrix1.length;
@@ -56,6 +78,36 @@ public class F3 {
             }
         }
         return result;
+    }
+
+    public static int[] addVectors(int[] vector1, int[] vector2) {
+
+        int[] result = new int[vector1.length];
+
+        if (vector1.length != vector2.length) {
+            System.out.println("Error! Vectors have to have equal length");
+        }
+
+        for (int i = 0; i < vector1.length; i++) {
+                result[i] = vector1[i] + vector2[i];
+        }
+        return result;
+    }
+
+    public static int[] multiplyMatricsOnVector(int[][] matrix, int[] vector) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        int[] finalresult = new int[rows];
+
+        for (int i = 0; i < rows; i++) {
+            int sum = 0;
+            for (int j = 0; j < cols; j++) {
+                sum += matrix[i][j] * vector[j];
+            }
+            finalresult[i] = sum;
+        }
+        return finalresult;
     }
 
 }

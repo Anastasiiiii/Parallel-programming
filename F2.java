@@ -34,6 +34,7 @@ public class F2 {
             }
             System.out.println();
         }
+
     }
     public static int[][] addMatrices(int[][] matrix1, int[][] matrix2) {
         int rows = matrix1.length;
